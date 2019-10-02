@@ -13,13 +13,14 @@ STYLE_CHOICES = sorted([(item, item) for item in get_all_styles()])
 class Snippet(models.Model):
   owner = models.ForeignKey(
       'auth.User', related_name='snippets', on_delete=models.CASCADE, default='')
-  highlighted = models.TextField(default="SOME STRING")
+  highlighted = models.TextField()
   created = models.DateTimeField(auto_now_add=True)
   title = models.CharField(max_length=100, blank=True, default='')
   code = models.TextField()
   linenos = models.BooleanField(default=False)
   lauguage = models.CharField(choices=LAUGUAGE_CHOICES, default='python', max_length=100)
   style = models.CharField(choices = STYLE_CHOICES, default='friendly', max_length=100)
+  example = 'hello'
 
 def save(self, *args, **kwargs):
   """
